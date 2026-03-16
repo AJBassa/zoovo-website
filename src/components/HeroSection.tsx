@@ -60,7 +60,12 @@ const HeroSection = () => {
               >
                 Join the Waitlist
               </Button>
-              <Button variant="heroOutline" size="lg" className="text-base px-8 py-6">
+              <Button
+                variant="heroOutline"
+                size="lg"
+                className="text-base px-8 py-6"
+                onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
+              >
                 Learn More
               </Button>
             </motion.div>
