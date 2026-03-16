@@ -1,9 +1,32 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Mail } from "lucide-react";
+import { Mail, CheckCircle, Loader2 } from "lucide-react";
 import dogSilhouette from "@/assets/dog-silhouette.png";
 
+const BEEHIIV_URL = "https://magic.beehiiv.com/v1/e24217db-1881-4490-9481-03a1af95bfa9";
+
 const CTASection = () => {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setStatus("loading");
+    try {
+      await fetch(`${BEEHIIV_URL}?email=${encodeURIComponent(email)}`, {
+        method: "GET",
+        mode: "no-cors",
+      });
+      setStatus("success");
+      setEmail("");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <section id="contact" className="py-24">
       <div className="container">
@@ -30,21 +53,45 @@ const CTASection = () => {
             <p className="text-primary-foreground/70 mb-10 text-lg leading-relaxed">
               Join the waitlist and help shape the future of pet care in the Netherlands.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-5 py-3.5 rounded-xl bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40 focus:outline-none focus:border-primary-foreground/50 text-sm"
-              />
-              <Button
-                variant="default"
-                size="lg"
-                className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 gap-2 rounded-xl px-6"
-              >
-                <Mail size={16} />
-                Join Waitlist
-              </Button>
-            </div>
+
+            {status === "success" ? (
+              <div className="flex items-center justify-center gap-2 text-primary-foreground py-4">
+                <CheckCircle size={20} />
+                <span className="font-semibold">You're on the list! Check your inbox.</span>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 justify-center">
+                <input
+                  id="waitlist-email"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  className="flex-1 px-5 py-3.5 rounded-xl bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40 focus:outline-none focus:border-primary-foreground/50 text-sm"
+                />
+                <Button
+                  type="submit"
+                  variant="default"
+                  size="lg"
+                  disabled={status === "loading"}
+                  className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 gap-2 rounded-xl px-6"
+                >
+                  {status === "loading" ? (
+                    <Loader2 size={16} className="animate-spin" />
+                  ) : (
+                    <Mail size={16} />
+                  )}
+                  {status === "loading" ? "Joining..." : "Join Waitlist"}
+                </Button>
+              </form>
+            )}
+
+            {status === "error" && (
+              <p className="text-xs text-red-300 mt-4">
+                Something went wrong. Please try again.
+              </p>
+            )}
             <p className="text-xs text-primary-foreground/40 mt-4">
               No spam. Unsubscribe anytime. We respect your privacy.
             </p>

@@ -27,7 +27,14 @@ const Navbar = () => {
               {item}
             </a>
           ))}
-          <Button variant="hero" size="sm">
+          <Button
+            variant="hero"
+            size="sm"
+            onClick={() => {
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+              document.getElementById("waitlist-email")?.focus();
+            }}
+          >
             Join Waitlist
           </Button>
         </div>
@@ -57,7 +64,15 @@ const Navbar = () => {
                   {item}
                 </a>
               ))}
-              <Button variant="hero" size="sm">
+              <Button
+                variant="hero"
+                size="sm"
+                onClick={() => {
+                  setOpen(false);
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                  document.getElementById("waitlist-email")?.focus();
+                }}
+              >
                 Join Waitlist
               </Button>
             </div>

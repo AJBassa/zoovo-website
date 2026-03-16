@@ -49,7 +49,15 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
-              <Button variant="hero" size="lg" className="text-base px-8 py-6">
+              <Button
+                variant="hero"
+                size="lg"
+                className="text-base px-8 py-6"
+                onClick={() => {
+                  document.getElementById("waitlist-email")?.focus();
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
                 Join the Waitlist
               </Button>
               <Button variant="heroOutline" size="lg" className="text-base px-8 py-6">
