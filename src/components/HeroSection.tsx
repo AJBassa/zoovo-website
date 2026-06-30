@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import appScreen from "@/assets/app-screen.png";
+import appScreen from "@/assets/app-screen.jpg";
 
 const HeroSection = () => {
   return (
