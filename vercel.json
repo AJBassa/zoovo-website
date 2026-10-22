@@ -13,6 +13,7 @@
     { "source": "/profile/:id", "destination": "https://api.zoovo.eu/functions/v1/og/profile/:id" },
     { "source": "/pet/:id", "destination": "https://api.zoovo.eu/functions/v1/og/pet/:id" },
     { "source": "/post/:id", "destination": "https://api.zoovo.eu/functions/v1/og/post/:id" },
+    { "source": "/playdate/:id", "destination": "https://api.zoovo.eu/functions/v1/og/playdate/:id" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
