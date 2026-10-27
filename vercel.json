@@ -4,15 +4,45 @@
     {
       "source": "/.well-known/apple-app-site-association",
       "headers": [
-        { "key": "Content-Type", "value": "application/json" }
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
       ]
     }
   ],
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/profile/:id", "destination": "https://api.zoovo.eu/functions/v1/og/profile/:id" },
-    { "source": "/pet/:id", "destination": "https://api.zoovo.eu/functions/v1/og/pet/:id" },
-    { "source": "/post/:id", "destination": "https://api.zoovo.eu/functions/v1/og/post/:id" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/profile/:id",
+      "destination": "https://api.zoovo.eu/functions/v1/og/profile/:id"
+    },
+    {
+      "source": "/pet/:id",
+      "destination": "https://api.zoovo.eu/functions/v1/og/pet/:id"
+    },
+    {
+      "source": "/post/:id",
+      "destination": "https://api.zoovo.eu/functions/v1/og/post/:id"
+    },
+    {
+      "source": "/s/:id",
+      "destination": "https://api.zoovo.eu/functions/v1/og/s/:id"
+    },
+    {
+      "source": "/playdate/:id",
+      "destination": "https://api.zoovo.eu/functions/v1/og/playdate/:id"
+    },
+    {
+      "source": "/bookings/:id",
+      "destination": "/open-in-app.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }

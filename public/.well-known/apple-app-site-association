@@ -3,7 +3,14 @@
     "details": [
       {
         "appID": "GXMN476LWQ.com.zoovo.zoovo",
-        "paths": ["/profile/*", "/pet/*", "/post/*"]
+        "paths": [
+          "/profile/*",
+          "/pet/*",
+          "/post/*",
+          "/s/*",
+          "/playdate/*",
+          "/bookings/*"
+        ]
       }
     ]
   }

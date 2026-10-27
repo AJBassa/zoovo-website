@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Open in the Zoovo app</title>
+<style>
+  :root { --yellow: #FDDA3A; --yellow-dark: #F8C002; --navy: #0D3B66; --navy-dark: #0D213B; --muted: #4a5d72; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px 16px;
+    background: linear-gradient(180deg, var(--yellow), var(--yellow-dark));
+    color: var(--navy); font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 420px; width: 100%; background: #fff; border-radius: 20px; padding: 32px 24px; text-align: center; box-shadow: 0 10px 30px rgba(13, 33, 59, .15); }
+  .brand { font-weight: 800; letter-spacing: 3px; font-size: 14px; color: var(--navy-dark); }
+  h1 { font-size: 24px; margin: 12px 0 8px; text-wrap: balance; }
+  p { color: var(--muted); margin: 0 0 24px; }
+  a.button { display: block; padding: 14px 20px; border-radius: 999px; font-weight: 700; text-decoration: none; }
+  a.primary { background: var(--navy); color: #fff; margin-bottom: 12px; }
+  a.secondary { color: var(--navy); border: 2px solid var(--navy); }
+  a.button:focus-visible { outline: 3px solid var(--navy-dark); outline-offset: 3px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">ZOOVO</div>
+  <h1 data-t="title">Open this in the Zoovo app</h1>
+  <p data-t="body">Bookings live in the app. If you have Zoovo on this phone, open the link from your email again on the phone, or open the app and go to My bookings.</p>
+  <a class="button primary" href="https://apps.apple.com/app/id6778077059" data-t="store">Get Zoovo on the App Store</a>
+  <a class="button secondary" href="https://www.zoovo.eu/" data-t="home">Go to zoovo.eu</a>
+</main>
+<script>
+  // Dutch for Dutch browsers; English otherwise.
+  if ((navigator.language || '').toLowerCase().startsWith('nl')) {
+    var nl = {
+      title: 'Open dit in de Zoovo-app',
+      body: 'Boekingen staan in de app. Heb je Zoovo op deze telefoon? Open de link uit je e-mail dan opnieuw op je telefoon, of open de app en ga naar Mijn boekingen.',
+      store: 'Download Zoovo in de App Store',
+      home: 'Naar zoovo.eu'
+    };
+    document.documentElement.lang = 'nl';
+    document.title = nl.title;
+    document.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = nl[el.dataset.t]; });
+  }
+</script>
+</body>
+</html>
